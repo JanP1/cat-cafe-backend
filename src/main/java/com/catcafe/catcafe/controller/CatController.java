@@ -3,12 +3,14 @@ package com.catcafe.catcafe.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.catcafe.catcafe.dto.CatDTO;
 import com.catcafe.catcafe.service.CatService;
 
 @RestController
+@RequestMapping("/api/menu-items")
 public class CatController {
 
     private final CatService catService;
@@ -17,7 +19,7 @@ public class CatController {
         this.catService = catService;
     }
 
-    @GetMapping("/cats")
+    @GetMapping
     public List<CatDTO> getCats() {
         return catService.getCatDTOs();
     }
