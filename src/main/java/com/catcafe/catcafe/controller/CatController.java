@@ -10,7 +10,7 @@ import com.catcafe.catcafe.dto.CatDTO;
 import com.catcafe.catcafe.service.CatService;
 
 @RestController
-@RequestMapping("/api/menu-items")
+@RequestMapping("/api/cats")
 public class CatController {
 
     private final CatService catService;
