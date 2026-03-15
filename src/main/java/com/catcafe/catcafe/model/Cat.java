@@ -19,7 +19,6 @@ public class Cat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Cat name
     @Column
     private String name;
 
