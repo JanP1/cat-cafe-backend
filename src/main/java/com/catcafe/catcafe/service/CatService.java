@@ -15,15 +15,6 @@ public class CatService {
     @Value("${supabase.endpoint}")
     private String endpoint;
 
-    @Value("${supabase.region}")
-    private String region;
-
-    @Value("${supabase.access-key}")
-    private String accessKey;
-
-    @Value("${supabase.secret-key}")
-    private String secretKey;
-
     @Value("${supabase.bucket-name}")
     private String bucketName;
 
@@ -37,7 +28,7 @@ public class CatService {
         return repository.findAll().stream().map(cat -> {
 
             String fileName = cat.getId() + "_" + cat.getName() + ".jpg";
-            String imageUrl = generateSignedUrl("cat-images", fileName, 3600);
+            String imageUrl = generatePublicUrl(fileName);
             return new CatDTO(
                 cat.getId(),
                 cat.getName(),
@@ -50,7 +41,7 @@ public class CatService {
         }).collect(Collectors.toList());
     }
 
-    private String generateSignedUrl(String bucket, String fileName, int expiresInSeconds) {
-        return "https://<project-ref>.supabase.co/storage/v1/object/sign/" + bucket + "/" + fileName;
+    private String generatePublicUrl(String fileName) {
+        return endpoint + "/" + bucketName + "/" + fileName;
     }
 }
