@@ -3,7 +3,6 @@ package com.catcafe.catcafe.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.catcafe.catcafe.repository.CatRepository;
@@ -12,23 +11,21 @@ import com.catcafe.catcafe.dto.CatDTO;
 @Service
 public class CatService {
 
-    @Value("${supabase.endpoint}")
-    private String endpoint;
-
-    @Value("${supabase.bucket-name}")
-    private String bucketName;
-
     private final CatRepository repository;
 
-    public CatService(CatRepository repository) {
+    private final StorageService storageService;
+
+    public CatService(CatRepository repository, StorageService storageService) {
         this.repository = repository;
+        this.storageService = storageService;
     }
 
     public List<CatDTO> getCatDTOs() {
         return repository.findAll().stream().map(cat -> {
-
             String fileName = cat.getId() + "_" + cat.getName() + ".jpg";
-            String imageUrl = generatePublicUrl(fileName);
+            
+            String imageUrl = storageService.generatePublicUrl(fileName);
+
             return new CatDTO(
                 cat.getId(),
                 cat.getName(),
@@ -39,9 +36,5 @@ public class CatService {
                 imageUrl
             );
         }).collect(Collectors.toList());
-    }
-
-    private String generatePublicUrl(String fileName) {
-        return endpoint + "/" + bucketName + "/" + fileName;
     }
 }
