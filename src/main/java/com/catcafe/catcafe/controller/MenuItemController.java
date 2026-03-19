@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.catcafe.catcafe.model.MenuItem;
+import com.catcafe.catcafe.dto.MenuItemDTO;
 import com.catcafe.catcafe.service.MenuItemService;
 
 @RestController
@@ -20,8 +20,8 @@ public class MenuItemController {
     }
 
     @GetMapping
-    public List<MenuItem> findAll() {
-        return menuItemService.getMenuItems();
+    public List<MenuItemDTO> gMenuItems() {
+        return menuItemService.getMenuItemDTOs();
     }
     
 }

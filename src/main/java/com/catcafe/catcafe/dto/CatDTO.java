@@ -2,7 +2,7 @@ package com.catcafe.catcafe.dto;
 
 import java.time.LocalDate;
 
-public record CatDTO(
+public record CatDTO (
     Long id,
     String name,
     String breed,

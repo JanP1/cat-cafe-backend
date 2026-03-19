@@ -23,4 +23,5 @@ public class CatController {
     public List<CatDTO> getCats() {
         return catService.getCatDTOs();
     }
+
 }
