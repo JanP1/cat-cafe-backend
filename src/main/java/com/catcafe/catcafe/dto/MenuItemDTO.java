@@ -7,5 +7,6 @@ public record MenuItemDTO (
     String name,
     String description,
     BigDecimal price,
+    String type,
     String imageUrl
 ) {}

@@ -31,6 +31,7 @@ public class MenuItemService {
                 menuItem.getName(),
                 menuItem.getDescription(),
                 menuItem.getPrice(),
+                menuItem.getType(),
                 imageUrl
             );
 

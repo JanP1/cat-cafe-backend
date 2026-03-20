@@ -26,6 +26,9 @@ public class MenuItem {
     @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal price;
 
+    @Column
+    private String type;
+
     public Long getId() {
         return id;
     }
@@ -40,6 +43,14 @@ public class MenuItem {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDescription() {
