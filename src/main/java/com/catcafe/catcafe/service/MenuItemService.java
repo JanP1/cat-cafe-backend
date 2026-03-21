@@ -37,4 +37,22 @@ public class MenuItemService {
 
         }).collect(Collectors.toList());
     }
+
+    public MenuItemDTO getMenuItemDTOById(Long id) {
+        return repository.findById(id).map(menuItem -> {
+            
+            String fileName = menuItem.getId() + "_" + menuItem.getName() + ".jpg";
+            String imageUrl = storageService.generatePublicUrl(fileName);
+
+            return new MenuItemDTO(
+                menuItem.getId(),
+                menuItem.getName(),
+                menuItem.getDescription(),
+                menuItem.getPrice(),
+                menuItem.getType(),
+                imageUrl
+            );
+        }).orElseThrow(() -> new RuntimeException("MenuItem not found with id: " + id));
+    }
 }
+

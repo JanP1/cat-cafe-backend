@@ -3,6 +3,7 @@ package com.catcafe.catcafe.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +21,13 @@ public class MenuItemController {
     }
 
     @GetMapping
-    public List<MenuItemDTO> gMenuItems() {
+    public List<MenuItemDTO> getMenuItems() {
         return menuItemService.getMenuItemDTOs();
+    }
+
+    @GetMapping("/{id}")
+    public MenuItemDTO getMenuItem(@PathVariable Long id) {
+        return menuItemService.getMenuItemDTOById(id);
     }
     
 }
