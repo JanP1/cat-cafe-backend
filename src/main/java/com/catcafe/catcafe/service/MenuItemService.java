@@ -41,7 +41,7 @@ public class MenuItemService {
     public MenuItemDTO getMenuItemDTOById(Long id) {
         return repository.findById(id).map(menuItem -> {
             
-            String fileName = menuItem.getId() + "_" + menuItem.getName() + ".jpg";
+            String fileName = menuItem.getId() + "_" + menuItem.getName().replace(" ", "_") + ".jpg";
             String imageUrl = storageService.generatePublicUrl(fileName);
 
             return new MenuItemDTO(
