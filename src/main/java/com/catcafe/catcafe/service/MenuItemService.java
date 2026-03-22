@@ -22,7 +22,7 @@ public class MenuItemService {
     
     public List<MenuItemDTO> getMenuItemDTOs() {
         return repository.findAll().stream().map(menuItem -> {
-            String fileName = menuItem.getId() + "_" + menuItem.getName() + ".jpg";
+            String fileName = menuItem.getId() + "_" + menuItem.getName().replace(" ", "_") + ".jpg";
             
             String imageUrl = storageService.generatePublicUrl(fileName);
 
